@@ -67,11 +67,23 @@ class _EditingScreenState extends State<EditingScreen> {
           child: ReorderableListView(
             children: [
               for (final item in listForList)
-                Card(
+                Dismissible(
                   key: Key(item),
-                  elevation: 2,
-                  child: ListTile(
-                    title: Text(item),
+                  background: Container(
+                    color: Colors.red,
+                  ),
+                  onDismissed: (direction) {
+                    var delIndex = listForList.indexOf(item);
+                    setState(() {
+                      listForList.remove(item);
+                    });
+                  },
+                  child: Card(
+                    key: Key(item),
+                    elevation: 2,
+                    child: ListTile(
+                      title: Text(item),
+                    ),
                   ),
                 ),
             ],

@@ -26,13 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
       if (inputText == null || inputText.isEmpty) {
         print("null line");
       } else {
-        if (singleLines.isEmpty) {
-          singleLines = inputText.split('\n');
-        } else {
-          List<String> newTextData = inputText.split('\n');
-          for (String line in newTextData) {
-            singleLines.add(line);
-          }
+        List<String> newTextData = inputText.split('\n');
+        for (String line in newTextData) {
+          singleLines.add(line);
         }
         _controller.clear();
         inputText = '';
@@ -63,6 +59,47 @@ class _HomeScreenState extends State<HomeScreen> {
             inputText = '';
           }
         }
+      } else {
+        if (dropDownValue == howToSeparate[5]) {
+          if (inputText == null || inputText.isEmpty) {
+            print('nothing to cut');
+          } else {
+            if (inputText == null || inputText.isEmpty) {
+              print('nothing to cut');
+            } else {
+              String singleLine = inputText.replaceAll('\n', ' ');
+
+              var singleWords = singleLine.split(' ');
+
+              var chunks = [];
+              for (var i = 0; i < singleWords.length; i += 5) {
+                chunks.add(singleWords.sublist(i,
+                    i + 3 > singleWords.length ? singleWords.length : i + 5));
+              }
+
+              for (var item in chunks) {
+                final newString = item.join(' ');
+                singleLines.add(newString);
+              }
+              _controller.clear();
+              inputText = '';
+            }
+          }
+        } else {
+          if (dropDownValue == howToSeparate[0]) {
+            if (inputText == null || inputText.isEmpty) {
+              print('nothing to cut');
+            } else {
+              String singleLine = inputText.replaceAll('\n', ' ');
+              List<String> singleWord = singleLine.split(' ');
+              for (String word in singleWord) {
+                singleLines.add(word);
+              }
+              _controller.clear();
+              inputText = '';
+            }
+          }
+        }
       }
     }
   }
@@ -84,56 +121,11 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          TextButton(
-            onLongPress: () {
-              print("long press");
-            },
-            onPressed: () {
-              if (inputText == null || inputText.isEmpty) {
-                print("null line");
-              } else {
-                if (singleLines.isEmpty) {
-                  singleLines = inputText.split('\n');
-                } else {
-                  List<String> newTextData = inputText.split('\n');
-                  for (String line in newTextData) {
-                    singleLines.add(line);
-                  }
-                }
-                _controller.clear();
-                inputText = '';
-
-                // singleLines = await Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) {
-                //   return EditingScreen(
-                //     fromCuttingScreen: singleLines,
-                //   );
-                // }));
-                // print(singleLines);
-              }
-            },
-            child: Icon(
-              Icons.cut_sharp,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.only(right: 30),
+            child: CutDropDown(
+              cutStyle: splitText,
             ),
-          ),
-          DropdownButton<String>(
-            icon: Icon(
-              Icons.map,
-              color: Colors.black,
-            ),
-            items: <String>['A', 'B', 'C', 'D'].map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (value) {
-              print(value);
-            },
-          ),
-          CutDropDown(
-            cutStyle: splitText,
           ),
         ],
       ),
@@ -163,7 +155,7 @@ class CutDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       icon: Icon(
-        Icons.car_rental,
+        Icons.cut_sharp,
         color: Colors.black,
       ),
       items: <String>[
