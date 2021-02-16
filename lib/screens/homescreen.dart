@@ -1,3 +1,4 @@
+import 'package:cutups_rebuild/screens/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cutups_rebuild/screens/editing_screen.dart';
 
@@ -109,6 +110,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
+        leading: TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return HelpScreen();
+              }),
+            );
+          },
+          child: Text(
+            'Help',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
         actions: [
           TextButton(
             onPressed: () {
