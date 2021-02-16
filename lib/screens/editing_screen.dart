@@ -40,21 +40,44 @@ class _EditingScreenState extends State<EditingScreen> {
 
   showAlertDialog(BuildContext context) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
-      child: Text("Cancel"),
+
+    Widget cancelButton = TextButton(
       onPressed: () {
         Navigator.of(context).pop();
       },
+      child: Text(
+        'Cancel',
+        style: TextStyle(color: Colors.black),
+      ),
     );
-    Widget continueButton = FlatButton(
-      child: Text("Continue"),
+
+    Widget continueButton = TextButton(
       onPressed: () {
         setState(() {
           listForList.clear();
+          Navigator.of(context).pop();
         });
-        Navigator.of(context).pop();
       },
+      child: Text(
+        'Continue',
+        style: TextStyle(color: Colors.red),
+      ),
     );
+    // Widget cancelButton = FlatButton(
+    //   child: Text("Cancel"),
+    //   onPressed: () {
+    //     Navigator.of(context).pop();
+    //   },
+    // );
+    // Widget continueButton = FlatButton(
+    //   child: Text("Continue"),
+    //   onPressed: () {
+    //     setState(() {
+    //       listForList.clear();
+    //     });
+    //     Navigator.of(context).pop();
+    //   },
+    // );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
