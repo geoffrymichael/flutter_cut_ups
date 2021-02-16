@@ -63,21 +63,6 @@ class _EditingScreenState extends State<EditingScreen> {
         style: TextStyle(color: Colors.red),
       ),
     );
-    // Widget cancelButton = FlatButton(
-    //   child: Text("Cancel"),
-    //   onPressed: () {
-    //     Navigator.of(context).pop();
-    //   },
-    // );
-    // Widget continueButton = FlatButton(
-    //   child: Text("Continue"),
-    //   onPressed: () {
-    //     setState(() {
-    //       listForList.clear();
-    //     });
-    //     Navigator.of(context).pop();
-    //   },
-    // );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
