@@ -1,4 +1,5 @@
 import 'package:cutups_rebuild/screens/help_screen.dart';
+import 'package:cutups_rebuild/services/gutenberg_random.dart';
 import 'package:flutter/material.dart';
 import 'package:cutups_rebuild/screens/editing_screen.dart';
 
@@ -112,27 +113,43 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         leading: TextButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return HelpScreen();
-              }),
-            );
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return EditingScreen(fromCuttingScreen: singleLines);
+            }));
           },
           child: Text(
-            'Help',
+            'Edit',
             style: TextStyle(color: Colors.black),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return EditingScreen(fromCuttingScreen: singleLines);
-              }));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return HelpScreen();
+                }),
+              );
             },
             child: Text(
-              'Edit',
+              'Help',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              print('randomnn pressed');
+              GutenbergRandom random = GutenbergRandom();
+              String randomPassage = await random.randomGutenberg();
+              print('I am from homescreen $randomPassage');
+              setState(() {
+                inputText = randomPassage;
+                _controller.text = randomPassage;
+              });
+            },
+            child: Text(
+              'Random',
               style: TextStyle(color: Colors.black),
             ),
           ),
