@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cutups_rebuild">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
+   
         android:label="cutups_rebuild"
         android:icon="@mipmap/ic_launcher">
         <activity
