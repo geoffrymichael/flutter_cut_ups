@@ -3,6 +3,7 @@ import 'package:cutups_rebuild/services/gutenberg_random.dart';
 import 'package:flutter/material.dart';
 import 'package:cutups_rebuild/screens/editing_screen.dart';
 import 'package:cutups_rebuild/services/split_logic.dart';
+import 'package:cutups_rebuild/services/dictionary_sentence.dart';
 
 //May want to create a project wide constant folder for this. Currently these constants are used here and recreated exactly as is in split_logic class file
 const Map howToSeparate = {
@@ -67,16 +68,20 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           TextButton(
-            onPressed: () async {
-              print('randomnn pressed');
-              GutenbergRandom random = GutenbergRandom();
-              String randomPassage = await random.randomGutenberg();
-              print('I am from homescreen $randomPassage');
-              setState(() {
-                inputText = randomPassage;
-                _controller.text = randomPassage;
-              });
+            onPressed: () {
+              DictionarySentence sentence = DictionarySentence();
+              sentence.randomDictionarySentence();
             },
+            // onPressed: () async {
+            //   print('randomnn pressed');
+            //   GutenbergRandom random = GutenbergRandom();
+            //   String randomPassage = await random.randomGutenberg();
+            //   print('I am from homescreen $randomPassage');
+            //   setState(() {
+            //     inputText = randomPassage;
+            //     _controller.text = randomPassage;
+            //   });
+            // },
             child: Text(
               'Random',
               style: TextStyle(color: Colors.black),
