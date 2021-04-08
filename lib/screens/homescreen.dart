@@ -68,9 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
+              print("random was pressed");
               DictionarySentence sentence = DictionarySentence();
-              sentence.randomDictionarySentence();
+              inputText = await sentence.randomDictionarySentence();
+
+              setState(() {
+                // inputText = loadedSentence;
+                _controller.text = inputText;
+              });
             },
             // onPressed: () async {
             //   print('randomnn pressed');

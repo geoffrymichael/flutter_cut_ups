@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 class DictionarySentence {
   Future<String> randomDictionarySentence() async {
+    String sentence;
     String API = "0pyour0llyatx4tcrq4dsgcoukg1aasqt8rnubxljcc1r8l3n";
     String url =
         "https://api.wordnik.com/v4/word.json/scuttle/topExample?useCanonical=false&api_key=$API";
@@ -18,5 +19,7 @@ class DictionarySentence {
     } else {
       print("something went wrong");
     }
+
+    return sentence;
   }
 }
